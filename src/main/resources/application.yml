@@ -1,0 +1,7 @@
+wechat:
+  appid: wx3907fb92b3725f24
+  appsecret: ec903363bb6d6bcf374b2c3ee4f94cad
+  token: wangxinxiang2019
+  access_token_url: https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
+  create_menu_url: https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN
+  jsapi_ticket: https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=ACCESS_TOKEN&type=jsapi
