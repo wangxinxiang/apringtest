@@ -1,0 +1,77 @@
+{
+  "groups": [
+    {
+      "name": "person1",
+      "type": "com.example.wang.entity.Person1",
+      "sourceType": "com.example.wang.entity.Person1"
+    },
+    {
+      "name": "wechat",
+      "type": "com.example.wang.entity.WechatAccountConfig",
+      "sourceType": "com.example.wang.entity.WechatAccountConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "person1.age",
+      "type": "java.lang.Integer",
+      "sourceType": "com.example.wang.entity.Person1"
+    },
+    {
+      "name": "person1.birthday",
+      "type": "java.util.Date",
+      "sourceType": "com.example.wang.entity.Person1"
+    },
+    {
+      "name": "person1.boss",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.example.wang.entity.Person1"
+    },
+    {
+      "name": "person1.dog",
+      "type": "com.example.wang.entity.Dog",
+      "sourceType": "com.example.wang.entity.Person1"
+    },
+    {
+      "name": "person1.last-name",
+      "type": "java.lang.String",
+      "sourceType": "com.example.wang.entity.Person1"
+    },
+    {
+      "name": "person1.lists",
+      "type": "java.util.List<java.lang.Object>",
+      "sourceType": "com.example.wang.entity.Person1"
+    },
+    {
+      "name": "person1.maps",
+      "type": "java.util.Map<java.lang.String,java.lang.Object>",
+      "sourceType": "com.example.wang.entity.Person1"
+    },
+    {
+      "name": "wechat.access-token-url",
+      "type": "java.lang.String",
+      "sourceType": "com.example.wang.entity.WechatAccountConfig"
+    },
+    {
+      "name": "wechat.appid",
+      "type": "java.lang.String",
+      "sourceType": "com.example.wang.entity.WechatAccountConfig"
+    },
+    {
+      "name": "wechat.appsecret",
+      "type": "java.lang.String",
+      "sourceType": "com.example.wang.entity.WechatAccountConfig"
+    },
+    {
+      "name": "wechat.create-menu-url",
+      "type": "java.lang.String",
+      "sourceType": "com.example.wang.entity.WechatAccountConfig"
+    },
+    {
+      "name": "wechat.token",
+      "type": "java.lang.String",
+      "sourceType": "com.example.wang.entity.WechatAccountConfig"
+    }
+  ],
+  "hints": []
+}
