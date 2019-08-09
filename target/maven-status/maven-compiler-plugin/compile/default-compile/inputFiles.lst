@@ -4,13 +4,17 @@ D:\wang\src\main\java\com\example\wang\entity\ViewButton.java
 D:\wang\src\main\java\com\example\wang\entity\ClickButton.java
 D:\wang\src\main\java\com\example\wang\entity\Button.java
 D:\wang\src\main\java\com\example\wang\util\Constant.java
+D:\wang\src\main\java\com\example\wang\entity\JsapiTicket.java
 D:\wang\src\main\java\com\example\wang\WangApplication.java
 D:\wang\src\main\java\com\example\wang\daomain\MenuModel.java
+D:\wang\src\main\java\com\example\wang\daomain\CommonModel.java
+D:\wang\src\main\java\com\example\wang\util\Message.java
 D:\wang\src\main\java\com\example\wang\entity\AccessToken.java
 D:\wang\src\main\java\com\example\wang\contriller\HelloWorldController.java
 D:\wang\src\main\java\com\example\wang\util\HttpUtil.java
 D:\wang\src\main\java\com\example\wang\entity\Menu.java
 D:\wang\src\main\java\com\example\wang\entity\Result.java
 D:\wang\src\main\java\com\example\wang\util\CheckUtil.java
+D:\wang\src\main\java\com\example\wang\daomain\JsSdkModel.java
 D:\wang\src\main\java\com\example\wang\entity\WechatAccountConfig.java
 D:\wang\src\main\java\com\example\wang\entity\Person1.java

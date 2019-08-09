@@ -1,7 +1,7 @@
 package com.example.wang.util;
 
-import java.util.Arrays;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class CheckUtil {
 
@@ -33,6 +33,29 @@ public class CheckUtil {
      */
     public static String createNocestr() {
         return UUID.randomUUID().toString();
+    }
+
+    /**
+     * 时间累加
+     * @param date  时间点
+     * @param plus  累加的秒
+     * @return 累加结果
+     */
+    public static Date getDateSecPlus(Date date, int plus)
+    {
+        try
+        {
+            if (null != date) {
+                Calendar cal = new GregorianCalendar();
+                cal.setTime(date);
+                cal.add(13, plus);
+                return cal.getTime();
+            }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

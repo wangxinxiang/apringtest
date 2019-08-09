@@ -4,11 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.example.wang.entity.JsapiTicket;
 import com.example.wang.entity.WechatAccountConfig;
 import com.example.wang.util.CheckUtil;
+import com.example.wang.util.Constant;
 import com.example.wang.util.HttpUtil;
 import com.example.wang.util.Message;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.util.Date;
 import java.util.Formatter;
 import java.util.HashMap;
 
@@ -43,14 +45,23 @@ public class JsSdkModel {
     }
 
     private String getJsapiTicket(String access_token) {
-        JsapiTicket accessToken;
+        if (Constant.JSAPI_TICKET != null) {
+            Date date = CheckUtil.getDateSecPlus(Constant.JSAPI_TICKET.getCreatedate(), Constant.JSAPI_TICKET.getExpires_in());
+            if (null != date && date.after(new Date())) {
+                return Constant.JSAPI_TICKET.getTicket();
+            }
+        }
+
+        JsapiTicket jsapiTicket;
         String token_url = wechatAccountConfig.getJsapiTicket();
         String requestUrl = token_url.replace("ACCESS_TOKEN", access_token);
         String result = HttpUtil.doGetstr(requestUrl);
 
-        accessToken = JSON.parseObject(result, JsapiTicket.class);
-        if (accessToken != null) {
-            return accessToken.getTicket();
+        jsapiTicket = JSON.parseObject(result, JsapiTicket.class);
+        if (jsapiTicket != null) {
+            jsapiTicket.setCreatedate(new Date());
+            Constant.JSAPI_TICKET = jsapiTicket;
+            return jsapiTicket.getTicket();
         } else {
             return null; // 这里返回了null需要后续处理
         }

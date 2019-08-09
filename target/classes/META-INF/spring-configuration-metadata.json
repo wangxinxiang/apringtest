@@ -68,6 +68,11 @@
       "sourceType": "com.example.wang.entity.WechatAccountConfig"
     },
     {
+      "name": "wechat.jsapi-ticket",
+      "type": "java.lang.String",
+      "sourceType": "com.example.wang.entity.WechatAccountConfig"
+    },
+    {
       "name": "wechat.token",
       "type": "java.lang.String",
       "sourceType": "com.example.wang.entity.WechatAccountConfig"
