@@ -45,7 +45,7 @@ public class JsSdkModel {
     }
 
     private String getJsapiTicket(String access_token) {
-        if (Constant.JSAPI_TICKET != null) {
+        if (Constant.JSAPI_TICKET != null && Constant.JSAPI_TICKET.getTicket() != null) {
             Date date = CheckUtil.getDateSecPlus(Constant.JSAPI_TICKET.getCreatedate(), Constant.JSAPI_TICKET.getExpires_in());
             if (null != date && date.after(new Date())) {
                 return Constant.JSAPI_TICKET.getTicket();
@@ -58,7 +58,7 @@ public class JsSdkModel {
         String result = HttpUtil.doGetstr(requestUrl);
 
         jsapiTicket = JSON.parseObject(result, JsapiTicket.class);
-        if (jsapiTicket != null) {
+        if (jsapiTicket != null && jsapiTicket.getTicket() != null) {
             jsapiTicket.setCreatedate(new Date());
             Constant.JSAPI_TICKET = jsapiTicket;
             return jsapiTicket.getTicket();

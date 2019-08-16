@@ -13,7 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>wang</name>
     <description>Demo project for Spring Boot</description>
-    <packaging>jar</packaging>  		  <!--打包方式jar/war-->
+    <packaging>jar</packaging>          <!--打包方式jar/war-->
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -63,6 +63,13 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.5</version>
+        </dependency>
+
+        <!-- xml解析 -->
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
         </dependency>
 
     </dependencies>

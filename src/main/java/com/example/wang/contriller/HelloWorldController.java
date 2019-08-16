@@ -4,14 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.example.wang.daomain.CommonModel;
 import com.example.wang.daomain.JsSdkModel;
 import com.example.wang.daomain.MenuModel;
+import com.example.wang.daomain.MessageModel;
 import com.example.wang.entity.Menu;
 import com.example.wang.entity.WechatAccountConfig;
 import com.example.wang.util.CheckUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,20 +23,32 @@ public class HelloWorldController {
     @Autowired
     public WechatAccountConfig wechatAccountConfig;
 
-    @RequestMapping(value = "/verity", method = RequestMethod.GET)
+    @GetMapping(value = "/verity")
     public void hello1(HttpServletRequest request, HttpServletResponse response) {
         String signature = request.getParameter("signature");
         String timestamp = request.getParameter("timestamp");
         String nonce = request.getParameter("nonce");
         String echostr = request.getParameter("echostr");
+        System.out.println("校验");
         try (PrintWriter out = response.getWriter()) {
-            if (CheckUtil.checkSignature(signature, timestamp, nonce)) {
+            if (CheckUtil.checkSignature(wechatAccountConfig, signature, timestamp, nonce)) {
                 out.write(echostr);
             }
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 此处是处理微信服务器的消息转发的
+     */
+    @PostMapping(value = "/verity")
+    public String processMsg(HttpServletRequest request) {
+        // 调用核心服务类接收处理请求
+        System.out.println("调用核心服务类接收处理请求");
+
+        return new MessageModel().processRequest(request);
     }
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)

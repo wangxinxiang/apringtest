@@ -1,3 +1,7 @@
+server:
+  port: 8080
+  # 下面这个参数是为解决问题而新增的
+  max-http-header-size: 8192
 wechat:
   appid: wx3907fb92b3725f24
   appsecret: ec903363bb6d6bcf374b2c3ee4f94cad

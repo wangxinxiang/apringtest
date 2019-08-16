@@ -17,7 +17,7 @@ public class CommonModel {
      * access_token_url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
      */
     public static String getAccessToken(WechatAccountConfig wechatAccountConfig) {
-        if (Constant.ACCESS_TOKEN != null) {
+        if (Constant.ACCESS_TOKEN != null && Constant.ACCESS_TOKEN.getAccess_token() != null) {
             Date date = CheckUtil.getDateSecPlus(Constant.ACCESS_TOKEN.getCreatedate(), Constant.ACCESS_TOKEN.getExpires_in());
             if (null != date && date.after(new Date())) {
                 return Constant.ACCESS_TOKEN.getAccess_token();
@@ -30,7 +30,7 @@ public class CommonModel {
         String result = HttpUtil.doGetstr(requestUrl);
 
         accessToken = JSON.parseObject(result, AccessToken.class);
-        if (accessToken != null) {
+        if (accessToken != null  && accessToken.getAccess_token() != null) {
             accessToken.setCreatedate(new Date());
             Constant.ACCESS_TOKEN = accessToken;
             return accessToken.getAccess_token();
