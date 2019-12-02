@@ -8,6 +8,8 @@ import com.example.wang.daomain.MessageModel;
 import com.example.wang.entity.Menu;
 import com.example.wang.entity.WechatAccountConfig;
 import com.example.wang.util.CheckUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,13 +25,15 @@ public class HelloWorldController {
     @Autowired
     public WechatAccountConfig wechatAccountConfig;
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @GetMapping(value = "/verity")
     public void hello1(HttpServletRequest request, HttpServletResponse response) {
         String signature = request.getParameter("signature");
         String timestamp = request.getParameter("timestamp");
         String nonce = request.getParameter("nonce");
         String echostr = request.getParameter("echostr");
-        System.out.println("校验");
+        logger.info("------------->校验");
         try (PrintWriter out = response.getWriter()) {
             if (CheckUtil.checkSignature(wechatAccountConfig, signature, timestamp, nonce)) {
                 out.write(echostr);
@@ -46,13 +50,14 @@ public class HelloWorldController {
     @PostMapping(value = "/verity")
     public String processMsg(HttpServletRequest request) {
         // 调用核心服务类接收处理请求
-        System.out.println("调用核心服务类接收处理请求");
+        logger.info("---->调用核心服务类接收处理请求");
 
         return new MessageModel().processRequest(request);
     }
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello() {
+        logger.info("---->hello world");
         return "hello world";
     }
 

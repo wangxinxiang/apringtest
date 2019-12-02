@@ -3,6 +3,8 @@ package com.example.wang.daomain;
 import com.example.wang.entity.ArticleItem;
 import com.example.wang.util.CheckUtil;
 import com.example.wang.util.Constant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -10,6 +12,9 @@ import java.util.List;
 import java.util.Map;
 
 public class MessageModel {
+
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public String processRequest(HttpServletRequest request) {
         // xml格式的消息数据
@@ -22,7 +27,7 @@ public class MessageModel {
             // 消息类型
             String msgType = requestMap.get(Constant.MsgType);
             String mes = null;
-            System.out.println("接收消息：" + mes);
+            logger.info("接收消息：" + mes);
             // 文本消息
             switch (msgType) {
                 case Constant.REQ_MESSAGE_TYPE_TEXT:
@@ -126,7 +131,7 @@ public class MessageModel {
             mes = mes == null ? "不知道你在干嘛" : mes;
             if (respXml == null)
                 respXml = CheckUtil.sendTextMsg(requestMap, mes);
-            System.out.println(respXml);
+            logger.info(respXml);
             return respXml;
         } catch (Exception e) {
             e.printStackTrace();

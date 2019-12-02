@@ -1,6 +1,7 @@
 var wx_data = null;
 
 $(function () {
+    $(".loader").show();
     $.ajax({
         url: window.location.protocol + "//" + window.location.host + '//jssdk',
         data: {
@@ -14,7 +15,7 @@ $(function () {
                 if (data.errcode != null && data.errcode === '0') {
                     wx_data = JSON.parse(data.result);
                     wx.config({
-                        debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                         appId: wx_data.appId, // 必填，公众号的唯一标识
                         timestamp: wx_data.timestamp, // 必填，生成签名的时间戳
                         nonceStr: wx_data.nonceStr, // 必填，生成签名的随机串
@@ -38,8 +39,9 @@ $(function () {
                         });
 
                         wx.getLocation({
-                            type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+                            type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
                             success: function (res) {
+                                $(".loader").hide();
                                 var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
                                 var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
                                 var speed = res.speed; // 速度，以米/每秒计
@@ -50,7 +52,7 @@ $(function () {
                                     longitude: longitude, // 经度，浮点数，范围为180 ~ -180。
                                     name: '测试下', // 位置名
                                     address: '测试地址', // 地址详情说明
-                                    scale: 1, // 地图缩放级别,整形值,范围从1~28。默认为最大
+                                    scale: 15, // 地图缩放级别,整形值,范围从1~28。默认为最大
                                     infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
                                 });
                             }
@@ -60,18 +62,22 @@ $(function () {
                     });
 
                     wx.error(function (res) {
+                        $(".loader").hide();
                         alert("接口调取失败")
                     });
-                } else if (data != null) {
+                } else {
+                    $(".loader").hide();
                     alert(JSON.stringify(data));
                 }
             } else {
+                $(".loader").hide();
                 alert("返回值为空");
             }
         },
         error: function (e) {
             alert('请求失败');
             console.log(e);
+            $(".loader").hide();
         }
     })
 })
