@@ -27,6 +27,7 @@ public class HelloWorldController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+
     @GetMapping(value = "/verity")
     public void hello1(HttpServletRequest request, HttpServletResponse response) {
         String signature = request.getParameter("signature");
